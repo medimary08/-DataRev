@@ -1,0 +1,4 @@
+config_id,source_name,file_name_pattern,file_format,delimiter_name,header_flag,infer_schema_flag,source_path,target_catalog,target_schema,target_table,load_type,archive_path,error_path,active_flag
+1,CUSTOMERS,customers_*.csv,CSV,COMMA,true,true,/Volumes/workspace/bronze/landing_raw_data/customers,workspace,bronze,customers,APPEND,/Volumes/workspace/bronze/archive/customers,/Volumes/workspace/bronze/error/customers,true
+2,ORDERS,orders_*.csv,CSV,PIPE,true,true,/Volumes/workspace/bronze/landing_raw_data/orders,workspace,bronze,orders,APPEND,/Volumes/workspace/bronze/archive/orders,/Volumes/workspace/bronze/error/orders,true
+3,PRODUCTS,products_*.json,JSON,,true,true,/Volumes/workspace/bronze/landing_raw_data/products,workspace,bronze,products,OVERWRITE,/Volumes/workspace/bronze/archive/products,/Volumes/workspace/bronze/error/products,true

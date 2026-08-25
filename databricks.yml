@@ -1,0 +1,35 @@
+# ============================================================
+# Databricks Asset Bundle configuration
+# ============================================================
+# This is the entry point for `databricks bundle deploy` / `databricks bundle run`.
+# It wires together the notebooks in this repo with the job definition
+# in resources/framework_job.yml.
+
+bundle:
+  name: ingestion_framework
+
+include:
+  - resources/*.yml
+
+# Workspace files (notebooks) are synced as-is from this repo into the
+# workspace root defined per-target below.
+sync:
+  include:
+    - Ingestion_framework/**
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      # TODO: replace with your Databricks workspace URL
+      host: https://<your-workspace-instance>.cloud.databricks.com
+      root_path: /Workspace/Users/marypriya2512@gmail.com/.bundle/${bundle.name}/${bundle.target}
+
+  prod:
+    mode: production
+    workspace:
+      host: https://<your-workspace-instance>.cloud.databricks.com
+      root_path: /Workspace/Users/marypriya2512@gmail.com/.bundle/${bundle.name}/${bundle.target}
+    run_as:
+      user_name: marypriya2512@gmail.com

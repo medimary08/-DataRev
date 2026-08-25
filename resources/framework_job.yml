@@ -1,0 +1,12 @@
+resources:
+  jobs:
+    framework_job:
+      name: framework_job
+      tasks:
+        - task_key: framework_task
+          notebook_task:
+            notebook_path: /Workspace/Users/marypriya2512@gmail.com/Ingestion_framework/Ingestion_Framework.py
+            source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
