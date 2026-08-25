@@ -1,16 +1,20 @@
-name: Validate Bundle (PR)
+name: Deploy to Databricks Dev
 
-# Runs on every PR targeting main. This is the gate — merge should be
-# blocked (via branch protection) until this passes.
+# Runs whenever a feature branch is merged into main (i.e. main gets a new push).
 on:
-  pull_request:
+  push:
     branches:
       - main
 
+concurrency:
+  group: deploy-dev
+  cancel-in-progress: false
+
 jobs:
-  validate:
-    name: Bundle validate
+  deploy:
+    name: Bundle deploy (dev)
     runs-on: ubuntu-latest
+    environment: dev   # optional: maps to a GitHub Environment for approval/protection rules
 
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
@@ -24,5 +28,12 @@ jobs:
       - name: Install Databricks CLI
         uses: databricks/setup-cli@main
 
-      - name: Validate bundle
-        run: databricks bundle validate -t dev
+      - name: Deploy bundle
+        # Validation already happened at PR time (validate-pr.yml).
+        # This syncs the notebooks into the workspace AND creates/updates
+        # framework_job from resources/framework_job.yml.
+        run: databricks bundle deploy -t dev
+
+      # Optional: uncomment to also trigger a run of the job right after deploy.
+      # - name: Run framework_job
+      #   run: databricks bundle run framework_job -t dev
