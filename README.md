@@ -136,8 +136,3 @@ git remote add origin <your-repo-url>
 git push -u origin main
 ```
 
-## Video walkthrough
-
-See `docs/VIDEO_SCRIPT.md` for a suggested 5–10 minute walkthrough outline
-covering the framework's structure, the config-driven design, and a live
-run of the job.
