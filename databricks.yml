@@ -23,13 +23,13 @@ targets:
     default: true
     workspace:
       # TODO: replace with your Databricks workspace URL
-      host: https://<your-workspace-instance>.cloud.databricks.com
+      host: https://dbc-a4366e71-e99a.cloud.databricks.com/
       root_path: /Workspace/Users/marypriya2512@gmail.com/.bundle/${bundle.name}/${bundle.target}
 
   prod:
     mode: production
     workspace:
-      host: https://<your-workspace-instance>.cloud.databricks.com
+      host: https://<your-workspace-instance>.cloud.databricks.com  #production workspace is not available for now
       root_path: /Workspace/Users/marypriya2512@gmail.com/.bundle/${bundle.name}/${bundle.target}
     run_as:
       user_name: marypriya2512@gmail.com
